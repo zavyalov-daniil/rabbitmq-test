@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public class Runner implements CommandLineRunner {
-
+public class RabbitRunner implements CommandLineRunner {
     @Value("${tutorial.client.duration:0}")
     private int duration;
 
@@ -19,5 +18,4 @@ public class Runner implements CommandLineRunner {
         Thread.sleep(duration);
         ctx.close();
     }
-
 }

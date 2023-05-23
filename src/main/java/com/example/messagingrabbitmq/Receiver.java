@@ -1,20 +1,14 @@
 package com.example.messagingrabbitmq;
 
-import java.util.concurrent.CountDownLatch;
-import org.springframework.stereotype.Component;
 
-@Component
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+
+@RabbitListener(queues = "my_queue")
 public class Receiver {
 
-    private CountDownLatch latch = new CountDownLatch(1);
-
-    public void receiveMessage(String message) {
-        System.out.println("Received <" + message + ">");
-        latch.countDown();
+    @RabbitHandler
+    public void receive(String in) {
+        System.out.println(" [x] Received '" + in + "'");
     }
-
-    public CountDownLatch getLatch() {
-        return latch;
-    }
-
 }
